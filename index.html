@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarAudio Asistente & Cotizador Pro</title>
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --card-bg: #1a1a1a;
+            --accent-color: #ff6f00;
+            --text-color: #ffffff;
+            --text-muted: #b0b0b0;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+            border: 1px solid #333;
+        }
+        h1 {
+            text-align: center;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+        }
+        p.subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group.full {
+            grid-column: span 2;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+        select, input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid #444;
+            background: #252525;
+            color: #fff;
+            font-size: 15px;
+        }
+        select:focus, input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+        button {
+            width: 100%;
+            padding: 14px;
+            background: var(--accent-color);
+            border: none;
+            color: #fff;
+            font-weight: bold;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        button:hover {
+            background: #e66300;
+        }
+        .result-box {
+            margin-top: 30px;
+            padding: 25px;
+            background: #222;
+            border-left: 5px solid var(--accent-color);
+            border-radius: 6px;
+            display: none;
+        }
+        .result-box h3 {
+            color: var(--accent-color);
+            margin-top: 0;
+        }
+        .component-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .component-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #333;
+        }
+        .whatsapp-btn {
+            display: block;
+            margin-top: 20px;
+            background-color: #25d366;
+            color: white;
+            text-align: center;
+            padding: 12px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 15px;
+        }
+        .whatsapp-btn:hover {
+            background-color: #1ebe5d;
+        }
+        .contacts-footer {
+            margin-top: 40px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 14px;
+            border-top: 1px solid #333;
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>CarAudio Asistente & Cotizador</h1>
+    <p class="subtitle">Diseña el sistema de sonido perfecto para tu auto, camioneta o pickup</p>
+    
+    <div class="form-grid">
+        <div class="form-group">
+            <label for="tipoVehiculo">Tipo de Vehículo:</label>
+            <select id="tipoVehiculo">
+                <option value="auto">Automóvil / Sedán</option>
+                <option value="suv">SUV / Cerrada</option>
+                <option value="pickup">Camioneta / Pickup</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="vehiculoInfo">Marca, Año y Modelo:</label>
+            <input type="text" id="vehiculoInfo" placeholder="Ej. Ford F-150 2022">
+        </div>
+
+        <div class="form-group full">
+            <label for="estiloSonido">Estilo de Sonido Deseado:</label>
+            <select id="estiloSonido">
+                <option value="open_show">Open Show (Medios de alta eficiencia para exterior)</option>
+                <option value="spl">SPL Callejero (Graves pesados y presión acústica)</option>
+                <option value="sq">Audio Profesional / SQ (Máxima fidelidad y nitidez)</option>
+            </select>
+        </div>
+    </div>
+
+    <button onclick="generarPresupuesto()">Calcular Presupuesto y Componentes</button>
+
+    <div id="resultadoCotizacion" class="result-box">
+        <h3 id="tituloResultado">Resumen de tu Cotización</h3>
+        <p id="descripcionVehiculo"></p>
+        <ul id="listaComponentes" class="component-list"></ul>
+        <h4 id="precioEstimado" style="color: #4caf50; margin-top: 20px;"></h4>
+        
+        <a id="whatsappLink" href="#" target="_blank" class="whatsapp-btn">💬 Enviar esta cotización por WhatsApp</a>
+    </div>
+
+    <div class="contacts-footer">
+        <p>¿Dudas directas? Contáctanos:</p>
+        <p>🇺🇸 EE. UU.: +1 (912) 412-1316 &nbsp;|&nbsp; 🇲🇽 MX: +52 (473) 163-9248</p>
+    </div>
+</div>
+
+<script>
+    function generarPresupuesto() {
+        const vehiculo = document.getElementById('vehiculoInfo').value || "Vehículo General";
+        const estilo = document.getElementById('estiloSonido').value;
+        
+        const resBox = document.getElementById('resultadoCotizacion');
+        const titulo = document.getElementById('tituloResultado');
+        const desc = document.getElementById('descripcionVehiculo');
+        const lista = document.getElementById('listaComponentes');
+        const precio = document.getElementById('precioEstimado');
+        const whatsappLink = document.getElementById('whatsappLink');
+
+        titulo.innerText = `Sistema Personalizado para: ${vehiculo}`;
+        lista.innerHTML = "";
+
+        let componentes = [];
+        let costoTotal = "";
+        let textoEstilo = "";
+
+        if (estilo === 'open_show') {
+            textoEstilo = "Open Show";
+            desc.innerText = "Configuración orientada a potencia de medios, trompetas y claridad a larga distancia con puertas abiertas.";
+            componentes = [
+                "Estéreo con procesador o ecualizador integrado",
+                "2 Pares de Medios / Open Show de 6.5\" u 8\"",
+                "Par de Super Tweeters de bala",
+                "Amplificador multicanal clase AB/D para medios",
+                "Kit de cableado libre de oxígeno calibre 4"
+            ];
+            costoTotal = "Presupuesto Estimado: $450 - $800 USD";
+        } else if (estilo === 'spl') {
+            textoEstilo = "SPL Callejero";
+            desc.innerText = "Configuración especializada en graves profundos, ideal para el espacio de cajuela o detrás de los asientos en pickups.";
+            componentes = [
+                "Autoestéreo con salidas RCA de alto voltaje (4V)",
+                "Subwoofer doble bobina de alta excursión (12\" o 15\")",
+                "Caja acústica ventilada calculada a la medida",
+                "Amplificador Monoblock Clase D de alta potencia (1,500W+ RMS)",
+                "Kit de alimentación calibre 0 con batería de respaldo opcional"
+            ];
+            costoTotal = "Presupuesto Estimado: $650 - $1,300 USD";
+        } else {
+            textoEstilo = "Audio Profesional / SQ";
+            desc.innerText = "Configuración de alta fidelidad (SQ) enfocada en la respuesta plana, escena sonora y matices detallados.";
+            componentes = [
+                "Unidad principal con DSP (Procesamiento Digital de Señal)",
+                "Set de componentes de gama alta (Tweeters de cúpula de seda + medios)",
+                "Subwoofer compacto plano (bajo asiento o caja sellada discreta)",
+                "Amplificador multicanal de sonido puro clase A/B",
+                "Material de insonorización para puertas (Deadening)"
+            ];
+            costoTotal = "Presupuesto Estimado: $500 - $950 USD";
+        }
+
+        componentes.forEach(comp => {
+            const li = document.createElement('li');
+            li.innerHTML = `✔️ ${comp}`;
+            lista.appendChild(li);
+        });
+
+        precio.innerText = costoTotal;
+        
+        const mensajeWp = encodeURIComponent(`¡Hola! Hice una cotización en tu página web para mi ${vehiculo} con el estilo ${textoEstilo}. Me gustaría afinar detalles y concretar mi pedido.`);
+        whatsappLink.href = `https://wa.me/524731639248?text=${mensajeWp}`;
+
+        resBox.style.display = 'block';
+    }
+</script>
+
+</body>
+</html>
