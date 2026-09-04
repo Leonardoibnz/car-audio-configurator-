@@ -3,18 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CarAudio Pro Master Ultra | Configurador Definitivo sin Límites</title>
+    <title>CarAudio & RGB Nexus 10K+ | Configurador Definitivo</title>
     <style>
         :root {
-            --bg-color: #050505;
-            --card-bg: #111111;
-            --accent-color: #ff6f00;
-            --accent-hover: #ff8f33;
-            --text-color: #ffffff;
-            --text-muted: #999999;
-            --border-color: #222222;
-            --success-color: #25d366;
-            --input-bg: #181818;
+            --bg-color: #030712;
+            --card-bg: #0f172a;
+            --accent-blue: #00e5ff;
+            --accent-hover: #33ecff;
+            --text-color: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: #1e293b;
+            --success-color: #10b981;
+            --input-bg: #1e293b;
+            --neon-glow: rgba(0, 229, 255, 0.25);
         }
         * { box-sizing: border-box; }
         body {
@@ -23,148 +24,159 @@
             color: var(--text-color);
             margin: 0;
             padding: 0;
-            line-height: 1.5;
+            line-height: 1.6;
         }
         header {
-            background: linear-gradient(135deg, #111, #000);
-            border-bottom: 3px solid var(--accent-color);
-            padding: 40px 20px;
+            background: linear-gradient(135deg, #090d16, #020617);
+            border-bottom: 3px solid var(--accent-blue);
+            padding: 30px 20px;
             text-align: center;
+            box-shadow: 0 10px 30px var(--neon-glow);
         }
         header h1 {
-            color: var(--accent-color);
+            color: var(--accent-blue);
             margin: 0;
-            font-size: 2.8rem;
+            font-size: 2.5rem;
             letter-spacing: 2px;
             text-transform: uppercase;
         }
-        header p {
-            color: var(--text-muted);
-            margin-top: 10px;
-            font-size: 1.15rem;
+        /* MENÚ DE PÁGINAS / TABS */
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            background: #0b1120;
+            border-bottom: 1px solid var(--border-color);
+            padding: 0 10px;
+            overflow-x: auto;
         }
-        .main-wrapper {
+        .tab-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            padding: 15px 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+            border-bottom: 3px solid transparent;
+        }
+        .tab-btn:hover {
+            color: var(--accent-blue);
+        }
+        .tab-btn.active {
+            color: var(--accent-blue);
+            border-bottom: 3px solid var(--accent-blue);
+            background: rgba(0, 229, 255, 0.05);
+        }
+        .page-section {
+            display: none;
             max-width: 1300px;
             margin: 30px auto;
             padding: 0 15px;
         }
+        .page-section.active {
+            display: block;
+        }
         .section-card {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
-            border-radius: 14px;
+            border-radius: 16px;
             padding: 30px;
             margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
         }
         .section-title {
-            color: var(--accent-color);
+            color: var(--accent-blue);
             font-size: 1.5rem;
             border-bottom: 2px solid var(--border-color);
             padding-bottom: 12px;
             margin-top: 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
         }
-        .grid-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-        .form-group {
-            margin-bottom: 18px;
-        }
-        label {
-            display: block;
-            margin-bottom: 7px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            color: #dddddd;
-        }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 8px; font-weight: 600; color: #e2e8f0; }
         select, input {
             width: 100%;
             padding: 14px;
-            border-radius: 8px;
+            border-radius: 10px;
             border: 1px solid var(--border-color);
             background: var(--input-bg);
             color: #fff;
             font-size: 15px;
-            transition: border-color 0.2s;
         }
-        select:focus, input:focus {
-            outline: none;
-            border-color: var(--accent-color);
-        }
-        .product-select-grid {
+        select:focus, input:focus { outline: none; border-color: var(--accent-blue); }
+        .product-grid {
             display: grid;
             grid-template-columns: 1fr auto;
             gap: 12px;
             align-items: center;
             margin-bottom: 15px;
-            background: #161616;
-            padding: 12px;
+            background: #131c31;
+            padding: 14px;
             border-radius: 10px;
-            border: 1px solid #282828;
+            border: 1px solid #1e293b;
         }
         .price-tag {
-            color: #4caf50;
+            color: #34d399;
             font-weight: bold;
-            font-size: 1.05rem;
+            background: #064e3b;
+            padding: 8px 14px;
+            border-radius: 8px;
+            border: 1px solid #059669;
             white-space: nowrap;
-            background: #102210;
-            padding: 8px 12px;
-            border-radius: 6px;
-            border: 1px solid #1e461e;
         }
         .summary-box {
-            background: #0d0d0d;
-            border: 2px dashed var(--accent-color);
-            border-radius: 12px;
-            padding: 30px;
-            margin-top: 40px;
-            box-shadow: 0 10px 40px rgba(255, 111, 0, 0.1);
+            background: #090d16;
+            border: 2px dashed var(--accent-blue);
+            border-radius: 16px;
+            padding: 35px;
+            margin-top: 30px;
         }
-        .summary-list {
-            list-style: none;
-            padding: 0;
-            margin: 20px 0;
-        }
+        .summary-list { list-style: none; padding: 0; margin: 20px 0; }
         .summary-list li {
             padding: 10px 0;
-            border-bottom: 1px solid #222;
+            border-bottom: 1px solid #1e293b;
             display: flex;
             justify-content: space-between;
-            font-size: 1.05rem;
         }
         .total-display {
             font-size: 2rem;
-            color: #4caf50;
+            color: #34d399;
             font-weight: bold;
             text-align: right;
             margin-top: 20px;
-            text-shadow: 0 0 15px rgba(76, 175, 80, 0.3);
         }
         .whatsapp-btn {
             display: block;
             width: 100%;
-            margin-top: 30px;
+            margin-top: 25px;
             background-color: var(--success-color);
             color: white;
             text-align: center;
             padding: 18px;
-            border-radius: 10px;
+            border-radius: 12px;
             text-decoration: none;
             font-weight: bold;
-            font-size: 20px;
-            transition: background 0.3s, transform 0.2s;
-            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+            font-size: 1.2rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            box-shadow: 0 6px 25px rgba(16, 185, 129, 0.4);
         }
-        .whatsapp-btn:hover {
-            background-color: #1ebe5d;
-            transform: translateY(-2px);
+        .whatsapp-btn:hover { background-color: #059669; }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
         }
+        .gallery-card {
+            background: #131c31;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            padding: 15px;
+            text-align: center;
+        }
+        .gallery-card h3 { color: var(--accent-blue); margin: 10px 0 5px 0; }
         footer {
             text-align: center;
             color: var(--text-muted);
@@ -172,218 +184,248 @@
             padding: 40px;
             border-top: 1px solid var(--border-color);
         }
-        @media(max-width: 768px) {
-            .grid-2 { grid-template-columns: 1fr; }
-            .product-select-grid { grid-template-columns: 1fr; }
-            .price-tag { text-align: center; }
-        }
+        @media(max-width: 768px) { .grid-2 { grid-template-columns: 1fr; } .product-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>CarAudio Pro Master Ultra</h1>
-    <p>Configurador Absoluto sin Límites — Elige, Combina y Diseña tu Sistema de Audio Ideal</p>
+    <h1>CarAudio & RGB Nexus 10K+</h1>
+    <p>Motor de Configuraciones Masivas — Más de 10,000 Variaciones Libres</p>
 </header>
 
-<div class="main-wrapper">
+<!-- MENÚ DE NAVEGACIÓN (PÁGINAS MÚLTIPLES) -->
+<div class="nav-tabs">
+    <button class="tab-btn active" onclick="switchTab('configurador', this)">🎛️ 1. Configurador Libre (10K+)</button>
+    <button class="tab-btn" onclick="switchTab('rgb', this)">💡 2. Iluminación LED & RGB</button>
+    <button class="tab-btn" onclick="switchTab('galeria', this)">📸 3. Proyectos & Ejemplos</button>
+    <button class="tab-btn" onclick="switchTab('instalacion', this)">🛠️ 4. Mano de Obra & Talleres</button>
+</div>
 
-    <!-- DATOS DEL VEHÍCULO -->
+<!-- PÁGINA 1: CONFIGURADOR MASIVO -->
+<div id="configurador" class="page-section active">
     <div class="section-card">
-        <h2 class="section-title">🚗 1. Datos del Vehículo / Cliente</h2>
+        <h2 class="section-title">🚗 Datos del Vehículo & Cliente</h2>
         <div class="grid-2">
             <div class="form-group">
-                <label for="tipoVehiculo">Tipo de Vehículo:</label>
+                <label>Tipo de Vehículo:</label>
                 <select id="tipoVehiculo">
-                    <option value="Pickup / Camioneta">Pickup / Camioneta (Ej. GMC Sierra, F-150, RAM)</option>
-                    <option value="SUV / Cerrada">SUV / Camioneta Cerrada (Tahoe, Expedition, etc.)</option>
-                    <option value="Auto / Sedán">Auto / Sedán / Deportivo / Hatchback</option>
-                    <option value="Vehículo Comercial / Van">Vehículo Comercial / Van / Jeep</option>
+                    <option value="Pickup / Camioneta">Pickup / Camioneta Full-Size (Ej. GMC Sierra, F-150)</option>
+                    <option value="SUV / Cerrada">SUV / Camioneta Cerrada</option>
+                    <option value="Auto / Sedán">Auto / Sedán / Deportivo</option>
+                    <option value="Jeep / Off-Road">Jeep / Off-Road / Comercial</option>
                 </select>
             </div>
             <div class="form-group">
-                <label for="vehiculoInfo">Marca, Año y Modelo Exacto:</label>
+                <label>Marca, Año y Modelo:</label>
                 <input type="text" id="vehiculoInfo" placeholder="Ej. GMC Sierra 1500 AT4X 2026">
             </div>
         </div>
     </div>
 
-    <!-- SELECTOR MASIVO DE COMPONENTES -->
     <div class="section-card">
-        <h2 class="section-title">⚙️ 2. Selector Maestro e Infinito de Componentes</h2>
-        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 25px;">Selecciona pieza por pieza de entre las mejores marcas del mercado mundial (Sundown, Rockford, DS18, Taramps, JL Audio, Kicker, Hertz, Deaf Bonce, Focal, Stinger, etc.).</p>
-
-        <!-- Unidades Principales & Procesadores -->
+        <h2 class="section-title">🔊 Catálogo Maestro de Audio (Selección Libre)</h2>
+        
         <div class="form-group">
-            <label>1. Estéreo / Pantalla Multimedia / Procesador DSP:</label>
-            <div class="product-select-grid">
+            <label>Unidad Principal / Estéreo / Pantalla / DSP:</label>
+            <div class="product-grid">
                 <select id="selStereo" onchange="calcularTotal()">
-                    <option value="0|Sin Estéreo (Mantener original de fábrica)|0">-- Sin Estéreo / Mantener Fábrica --</option>
-                    <option value="180|Pioneer MVH-S235BT (Bluetooth / Sin Mecánica)|180">Pioneer MVH-S235BT (Bluetooth) - $180 USD</option>
-                    <option value="350|Pioneer DMH-Z5350TV (Pantalla 6.8" Apple CarPlay/Android Auto)|350">Pioneer DMH-Z5350TV (CarPlay) - $350 USD</option>
-                    <option value="480|Sony XAV-AX8100 (Pantalla Flotante 8.9" HDMI)|480">Sony XAV-AX8100 (Pantalla Flotante) - $480 USD</option>
-                    <option value="650|Kenwood Excelon DMX9707S (Hi-Res Audio Wireless CarPlay)|650">Kenwood Excelon DMX9707S - $650 USD</option>
-                    <option value="250|AudioControl LC7i (Convertidor de Alta a Baja 6 Canales)|250">AudioControl LC7i (Procesador OEM) - $250 USD</option>
-                    <option value="420|DSP Helix M-FOUR DSP (Procesador y Amplificador Integrado)|420">Helix M-FOUR Procesador DSP Avanzado - $420 USD</option>
-                    <option value="850|DSP Audison bit One HD Virtus (Procesador de Alta Gama Audiófilo)|850">Audison bit One HD Virtus Hi-End - $850 USD</option>
+                    <option value="0|Sin Estéreo (Mantener original)|0">-- Sin Estéreo / Fábrica --</option>
+                    <option value="180|Pioneer MVH-S235BT Bluetooth|180">Pioneer BT - $180</option>
+                    <option value="350|Pioneer DMH-Z5350TV CarPlay|350">Pioneer CarPlay - $350</option>
+                    <option value="480|Sony XAV-AX8100 Flotante 8.9"|480">Sony Flotante - $480</option>
+                    <option value="650|Kenwood Excelon DMX9707S Hi-Res|650">Kenwood Hi-Res - $650</option>
+                    <option value="850|Audison bit One HD Virtus Hi-End|850">Audison DSP - $850</option>
                 </select>
                 <span class="price-tag" id="priceStereo">$0 USD</span>
             </div>
         </div>
 
-        <!-- Medios Delanteros -->
         <div class="form-group">
-            <label>2. Set de Medios / Bocinas Delanteras (Puertas / Tablero):</label>
-            <div class="product-select-grid">
+            <label>Medios Delanteros (Puertas / Tablero):</label>
+            <div class="product-grid">
                 <select id="selMediosFront" onchange="calcularTotal()">
-                    <option value="0|Sin Medios Delanteros|0">-- Sin Medios Delanteros --</option>
-                    <option value="130|Set Kicker CS Series 6.5" 100W RMS con Crossovers|130">Kicker CS Series 6.5" - $130 USD</option>
-                    <option value="210|Set Rockford Fosgate Punch P165-SI 6.5" Componentes|210">Rockford Fosgate Punch 6.5" - $210 USD</option>
-                    <option value="310|Set de Medios Focal Access 165AS (Alta Fidelidad SQ)|310">Focal Access 165AS SQ - $310 USD</option>
-                    <option value="480|Set Morel Maximo Ultra 602 HE (Sonido Puro Audiófilo)|480">Morel Maximo Ultra 602 - $480 USD</option>
-                    <option value="290|Par de Medios Open Show Deaf Bonce Machete 8" 300W RMS|290">Deaf Bonce Machete 8" Open Show - $290 USD</option>
-                    <option value="380|Set de Medios Hertz Mille Pro MP 165.3 de Competencia|380">Hertz Mille Pro MP 165.3 - $380 USD</option>
+                    <option value="0|Sin Medios Delanteros|0">-- Sin Medios --</option>
+                    <option value="130|Kicker CS 6.5" 100W RMS|130">Kicker CS 6.5" - $130</option>
+                    <option value="210|Rockford Fosgate Punch 6.5"|210">Rockford Punch - $210</option>
+                    <option value="310|Focal Access 165AS SQ|310">Focal Access SQ - $310</option>
+                    <option value="480|Morel Maximo Ultra 602 Audiófilo|480">Morel Ultra - $480</option>
+                    <option value="290|Deaf Bonce Machete 8" Open Show|290">Deaf Bonce Open Show - $290</option>
                 </select>
                 <span class="price-tag" id="priceMediosFront">$0 USD</span>
             </div>
         </div>
 
-        <!-- Medios Traseros -->
         <div class="form-group">
-            <label>3. Bocinas / Medios Traseros (Puertas Traseras o Redondas):</label>
-            <div class="product-select-grid">
-                <select id="selMediosRear" onchange="calcularTotal()">
-                    <option value="0|Sin Medios Traseros|0">-- Sin Medios Traseros --</option>
-                    <option value="110|Bocinas Coaxiales Kicker CS 6x9" 3 Vías|110">Kicker CS 6x9 Coaxiales - $110 USD</option>
-                    <option value="160|Par de Medios DS18 PRO-X6.4BM 6.5" Open Show 500W|160">DS18 PRO-X6.4BM 6.5" (Par) - $160 USD</option>
-                    <option value="240|Bocinas Coaxiales Rockford Fosgate Power T1693 6x9" Alta Gama|240">Rockford Fosgate Power 6x9 - $240 USD</option>
-                    <option value="220|Par de Medios Hertz SV 165.1 Open Show Alta Potencia|220">Hertz SV 165.1 Open Show - $220 USD</option>
-                </select>
-                <span class="price-tag" id="priceMediosRear">$0 USD</span>
-            </div>
-        </div>
-
-        <!-- Tweeters / Agudos -->
-        <div class="form-group">
-            <label>4. Super Tweeters / Tweeters de Bala (Agudos Extremos):</label>
-            <div class="product-select-grid">
-                <select id="selTweeters" onchange="calcularTotal()">
-                    <option value="0|Sin Tweeters Adicionales|0">-- Sin Tweeters Adicionales --</option>
-                    <option value="75|Par de Super Tweeters DS18 PRO-TW120 1" Bala Aluminio|75">DS18 PRO-TW120 (Par) - $75 USD</option>
-                    <option value="110|Par de Tweeters de Neodimio Rockford Fosgate Punch Bullet|110">Rockford Fosgate Punch Bullet - $110 USD</option>
-                    <option value="140|Par de Drivers de Compresión JBL Selenium Titanium|140">JBL Selenium Drivers Titanium - $140 USD</option>
-                    <option value="210|Par de Super Tweeters Deaf Bonce Apocalypse T35 Neo|210">Deaf Bonce Apocalypse T35 Neo - $210 USD</option>
-                </select>
-                <span class="price-tag" id="priceTweeters">$0 USD</span>
-            </div>
-        </div>
-
-        <!-- Subwoofers / Bajos -->
-        <div class="form-group">
-            <label>5. Subwoofer / Bajo (Cajón o Bajo Asiento):</label>
-            <div class="product-select-grid">
+            <label>Subwoofer / Bajo (Cajón / Bajo Asiento):</label>
+            <div class="product-grid">
                 <select id="selSub" onchange="calcularTotal()">
                     <option value="0|Sin Subwoofer|0">-- Sin Subwoofer --</option>
-                    <option value="240|Subwoofer Kicker CompR 12" Doble Bobina 500W RMS|240">Kicker CompR 12" 500W RMS - $240 USD</option>
-                    <option value="290|Subwoofer Plano Kicker CompRT 10" (Ideal Pickups / Bajo Asiento)|290">Kicker CompRT 10" Plano - $290 USD</option>
-                    <option value="380|Subwoofer Rockford Fosgate P3D4-15 15" 600W RMS|380">Rockford Fosgate P3D4 15" - $380 USD</option>
-                    <option value="420|Subwoofer Sundown Audio SA-12 v.4 Classic 750W RMS|420">Sundown Audio SA-12 v.4 - $420 USD</option>
-                    <option value="650|Subwoofer JL Audio 13TW5v2-2 Ultra-Plano Hi-End 13.5"|650">JL Audio Ultra-Plano 13.5" - $650 USD</option>
-                    <option value="890|Subwoofer Sundown Audio X-12 v.3 D2 2000W RMS Competencia|890">Sundown Audio X-12 v.3 Competencia - $890 USD</option>
-                    <option value="1250|Subwoofer JL Audio 13W7AE-3 Edición Aniversario Legendario|1250">JL Audio 13W7AE Legendario - $1,250 USD</option>
+                    <option value="240|Kicker CompR 12" 500W RMS|240">Kicker CompR 12" - $240</option>
+                    <option value="290|Kicker CompRT 10" Plano (Pickups)|290">Kicker Plano - $290</option>
+                    <option value="420|Sundown Audio SA-12 v.4 750W RMS|420">Sundown SA-12 - $420</option>
+                    <option value="650|JL Audio 13TW5v2-2 Ultra-Plano Hi-End|650">JL Audio Ultra-Plano - $650</option>
+                    <option value="890|Sundown Audio X-12 v.3 2000W RMS|890">Sundown X-12 Competencia - $890</option>
+                    <option value="1250|JL Audio 13W7AE-3 Legendario|1250">JL Audio W7 Legendario - $1,250</option>
                 </select>
                 <span class="price-tag" id="priceSub">$0 USD</span>
             </div>
         </div>
 
-        <!-- Amplificador para Medios -->
         <div class="form-group">
-            <label>6. Amplificador de 4 Canales para Medios / Open Show:</label>
-            <div class="product-select-grid">
-                <select id="selAmpMedios" onchange="calcularTotal()">
-                    <option value="0|Sin Amplificador de Medios|0">-- Sin Amplificador de Medios --</option>
-                    <option value="230|Amplificador Taramps DS 800x4 (4 Canales 800W RMS)|230">Taramps DS 800x4 - $230 USD</option>
-                    <option value="280|Amplificador DS18 CANDY X400.4 Compacto Clase D|280">DS18 CANDY X400.4 Compacto - $280 USD</option>
-                    <option value="340|Amplificador Rockford Fosgate Prime R400-4D Clase D|340">Rockford Fosgate Prime R400-4 - $340 USD</option>
-                    <option value="490|Amplificador JL Audio RD400/4 NexD Alta Eficiencia|490">JL Audio RD400/4 - $490 USD</option>
-                    <option value="620|Amplificador Hertz Mille Power HCP 4DK 4 Canales Alta Gama|620">Hertz HCP 4DK - $620 USD</option>
-                </select>
-                <span class="price-tag" id="priceAmpMedios">$0 USD</span>
-            </div>
-        </div>
-
-        <!-- Amplificador Monoblock Subwoofer -->
-        <div class="form-group">
-            <label>7. Amplificador Monoblock para Subwoofer (Bajos):</label>
-            <div class="product-select-grid">
+            <label>Amplificador Monoblock (Subwoofer):</label>
+            <div class="product-grid">
                 <select id="selAmpSub" onchange="calcularTotal()">
-                    <option value="0|Sin Amplificador Monoblock|0">-- Sin Amplificador Monoblock --</option>
-                    <option value="260|Amplificador Monoblock Kicker CX1200.1 Clase D|260">Kicker CX1200.1 Subwoofer - $260 USD</option>
-                    <option value="320|Amplificador Monoblock Taramps Smart 3K (3,000W RMS)|320">Taramps Smart 3K (3000W) - $320 USD</option>
-                    <option value="450|Amplificador Monoblock Rockford Fosgate Punch P1000X1bd|450">Rockford Fosgate Punch 1000W - $450 USD</option>
-                    <option value="680|Amplificador Monoblock Sundown Audio SALT-2000 2000W RMS|680">Sundown Audio SALT-2000W - $680 USD</option>
-                    <option value="980|Amplificador Monoblock JL Audio 1000/1v2 Class D Slash Series|980">JL Audio 1000/1v2 Slash Series - $980 USD</option>
+                    <option value="0|Sin Monoblock|0">-- Sin Monoblock --</option>
+                    <option value="260|Kicker CX1200.1 Clase D|260">Kicker CX1200.1 - $260</option>
+                    <option value="320|Taramps Smart 3K (3,000W RMS)|320">Taramps Smart 3K - $320</option>
+                    <option value="450|Rockford Punch P1000X1bd|450">Rockford 1000W - $450</option>
+                    <option value="680|Sundown Audio SALT-2000W|680">Sundown SALT-2000 - $680</option>
+                    <option value="980|JL Audio 1000/1v2 Slash Series|980">JL Audio Slash - $980</option>
                 </select>
                 <span class="price-tag" id="priceAmpSub">$0 USD</span>
             </div>
         </div>
+    </div>
+</div>
 
-        <!-- Cableado, Baterías & Insonorización -->
+<!-- PÁGINA 2: ILUMINACIÓN LED RGB -->
+<div id="rgb" class="page-section">
+    <div class="section-card">
+        <h2 class="section-title">💡 Sistema de Iluminación LED RGB & Neón Rítmico</h2>
+        <p style="color: var(--text-muted);">Personaliza cada rincón de tu vehículo con control total desde el celular.</p>
+        
         <div class="form-group">
-            <label>8. Kit de Cables, Batería Secundaria y Material de Insonorización:</label>
-            <div class="product-select-grid">
+            <label>Kit de Tiras LED RGB Ambientales Interiores:</label>
+            <div class="product-grid">
+                <select id="selRgbInterior" onchange="calcularTotal()">
+                    <option value="0|Sin Iluminación Interior|0">-- Ninguna --</option>
+                    <option value="90|Kit Tiras LED RGB Interiores App Bluetooth|90">Tiras RGB Básicas - $90</option>
+                    <option value="180|Fibra Óptica Ambiental Acrílica RGB Pro (Tablero y Puertas)|180">Fibra Óptica Pro - $180</option>
+                    <option value="290|Sistema Ambiental Multi-Zona Rítmico Musical|290">Sistema Rítmico Pro - $290</option>
+                </select>
+                <span class="price-tag" id="priceRgbInterior">$0 USD</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Iluminación LED para Bocinas, Subwoofers y Chasis (Rock Lights):</label>
+            <div class="product-grid">
+                <select id="selRgbBocinas" onchange="calcularTotal()">
+                    <option value="0|Sin Luces en Bocinas/Chasis|0">-- Ninguna --</option>
+                    <option value="110|Anillos LED RGB Smart para 4 Bocinas|110">Anillos LED Bocinas - $110</option>
+                    <option value="250|Kit Rock Lights LED RGB Bajo Chasis 8 Cápsulas (Pickups/Off-Road)|250">Rock Lights 8 Cápsulas - $250</option>
+                </select>
+                <span class="price-tag" id="priceRgbBocinas">$0 USD</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- PÁGINA 3: GALERÍA DE PROYECTOS -->
+<div id="galeria" class="page-section">
+    <div class="section-card">
+        <h2 class="section-title">📸 Galería de Diseños y Montajes</h2>
+        <div class="gallery-grid">
+            <div class="gallery-card">
+                <h3>GMC Sierra AT4X Pro</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">Audio Sundown Audio + Rock Lights RGB + Subwoofer Plano bajo asiento.</p>
+            </div>
+            <div class="gallery-card">
+                <h3>Ford F-150 Lariat</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">Pantalla flotante Sony + Set Focal SQ + Fibra óptica rítmica.</p>
+            </div>
+            <div class="gallery-card">
+                <h3>Jeep Wrangler Rubicon</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">Open Show DS18 completo + Amplificación Taramps + Rock Lights chasis.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- PÁGINA 4: MANO DE OBRA Y ACCESORIOS -->
+<div id="instalacion" class="page-section">
+    <div class="section-card">
+        <h2 class="section-title">🛠️ Cables, Insonorización y Mano de Obra</h2>
+        
+        <div class="form-group">
+            <label>Kit de Cableado y Baterías:</label>
+            <div class="product-grid">
                 <select id="selAccesorios" onchange="calcularTotal()">
-                    <option value="80|Kit de Cableado Calibre 4 Estándar + RCA Doble Blindaje|80">Kit Calibre 4 Básico - $80 USD</option>
-                    <option value="180|Kit Calibre 0 Puro Cobre 100% OFC + Distribuidor + Terminales Pro|180">Kit Calibre 0 Profesional Cobre - $180 USD</option>
-                    <option value="350|Kit Calibre 0 Pro + Batería AGM Secundaria de Respaldo Stinger|350">Kit Calibre 0 + Batería AGM Stinger - $350 USD</option>
-                    <option value="580|Kit Calibre 0 Pro + Batería Litio + Paquete 4 Puertas Insonorizadas|580">Kit Calibre 0 + Batería Litio + Insonorización 4 Puertas - $580 USD</option>
+                    <option value="80|Kit Calibre 4 Básico + RCA|80">Kit Calibre 4 - $80</option>
+                    <option value="180|Kit Calibre 0 Puro Cobre 100% OFC Pro|180">Kit Calibre 0 Cobre - $180</option>
+                    <option value="350|Kit Calibre 0 + Batería AGM Secundaria Stinger|350">Kit 0 + Batería AGM - $350</option>
+                    <option value="580|Kit Calibre 0 + Batería Litio + Insonorización 4 Puertas|580">Kit Pro + Litio + Insonorización - $580</option>
                 </select>
                 <span class="price-tag" id="priceAccesorios">$0 USD</span>
             </div>
         </div>
-    </div>
 
-    <!-- RESUMEN EN TIEMPO REAL -->
+        <div class="form-group">
+            <label>Mano de Obra Profesional:</label>
+            <div class="product-grid">
+                <select id="selManoObra" onchange="calcularTotal()">
+                    <option value="150|Mano de Obra Estándar|150">Instalación Estándar - $150</option>
+                    <option value="300|Mano de Obra Avanzada Pro + Ajuste DSP|300">Instalación Avanzada - $300</option>
+                    <option value="550|Mano de Obra Master Full Equip (Audio, RGB, Calibración con Osciloscopio)|550">Instalación Master Full Equip - $550</option>
+                </select>
+                <span class="price-tag" id="priceManoObra">$0 USD</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- RESUMEN GLOBAL FIJO -->
+<div class="main-wrapper" style="margin-top: 0;">
     <div class="summary-box">
-        <h3 style="color: var(--accent-color); margin-top:0;">📋 Resumen de tu Cotización Personalizada Ultra</h3>
-        <p id="vehiculoResumenText" style="color: var(--text-muted);">Completa el modelo de tu vehículo y selecciona tus componentes arriba.</p>
+        <h3 style="color: var(--accent-blue); margin-top:0;">📋 Resumen Nexus 10K+ en Tiempo Real</h3>
+        <p id="vehiculoResumenText" style="color: var(--text-muted);">Completa el modelo de tu vehículo y elige tus componentes.</p>
         <ul id="listaResumen" class="summary-list">
-            <li><span>Selecciona componentes en el catálogo...</span><span>$0</span></li>
+            <li><span>Selecciona componentes en las pestañas...</span><span>$0</span></li>
         </ul>
         <div class="total-display" id="totalGeneralText">Total Estimado: $0 USD</div>
 
         <a id="whatsappBtn" href="#" target="_blank" class="whatsapp-btn">💬 Enviar esta cotización exacta a mi WhatsApp</a>
     </div>
-
 </div>
 
 <footer>
-    <p>CarAudio Pro Master Ultra — Sistema de Configuradores sin Límites</p>
+    <p>CarAudio & RGB Nexus 10K+ — Plataforma Multisección sin Límites</p>
     <p>🇺🇸 EE. UU.: +1 (912) 412-1316 &nbsp;|&nbsp; 🇲🇽 MX: +52 (473) 163-9248</p>
 </footer>
 
 <script>
+    function switchTab(tabId, btn) {
+        document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.getElementById(tabId).classList.add('active');
+        btn.classList.add('active');
+    }
+
     function calcularTotal() {
         const vehiculo = document.getElementById('vehiculoInfo').value || "Vehículo sin especificar";
         const tipoVehiculo = document.getElementById('tipoVehiculo').value;
 
-        const selects = ['selStereo', 'selMediosFront', 'selMediosRear', 'selTweeters', 'selSub', 'selAmpMedios', 'selAmpSub', 'selAccesorios'];
-        const pricesIds = ['priceStereo', 'priceMediosFront', 'priceMediosRear', 'priceTweeters', 'priceSub', 'priceAmpMedios', 'priceAmpSub', 'priceAccesorios'];
+        const selects = ['selStereo', 'selMediosFront', 'selSub', 'selAmpSub', 'selRgbInterior', 'selRgbBocinas', 'selAccesorios', 'selManoObra'];
+        const pricesIds = ['priceStereo', 'priceMediosFront', 'priceSub', 'priceAmpSub', 'priceRgbInterior', 'priceRgbBocinas', 'priceAccesorios', 'priceManoObra'];
         
         let total = 0;
         let itemsSeleccionados = [];
 
         selects.forEach((id, index) => {
             const select = document.getElementById(id);
-            const valParts = select.value.split('|');
-            const precio = parseInt(valParts[0]) || 0;
-            const nombreProd = valParts[1];
-            
-            document.getElementById(pricesIds[index]).innerText = `$${precio} USD`;
+            if(select) {
+                const valParts = select.value.split('|');
+                const precio = parseInt(valParts[0]) || 0;
+                const nombreProd = valParts[1];
+                
+                const priceTagEl = document.getElementById(pricesIds[index]);
+                if(priceTagEl) priceTagEl.innerText = `$${precio} USD`;
 
-            if (precio > 0) {
-                total += precio;
-                itemsSeleccionados.push({ nombre: nombreProd, precio: precio });
+                if (precio > 0) {
+                    total += precio;
+                    itemsSeleccionados.push({ nombre: nombreProd, precio: precio });
+                }
             }
         });
 
@@ -404,22 +446,20 @@
 
         document.getElementById('totalGeneralText').innerText = `Total Estimado: $${total} USD`;
 
-        // Construir mensaje detallado para WhatsApp del instalador
-        let mensajeWp = `¡Hola! He armado una cotización personalizada ULTRA en la web:\n\n` +
+        let mensajeWp = `¡Hola! He armado una cotización NEXUS 10K+ en la web:\n\n` +
                         `🚗 Vehículo: ${vehiculo} (${tipoVehiculo})\n\n` +
-                        `🎛️ Componentes Seleccionados:\n`;
+                        `🎛️ Componentes y Sistemas Seleccionados:\n`;
         
         itemsSeleccionados.forEach(i => {
             mensajeWp += `- ${i.nombre} ($${i.precio} USD)\n`;
         });
 
-        mensajeWp += `\n💰 Presupuesto Total Estimado: $${total} USD\n\nQuiero confirmar stock, detalles de instalación y apartar fecha.`;
+        mensajeWp += `\n💰 Presupuesto Total Estimado: $${total} USD\n\nQuiero confirmar stock y agendar instalación.`;
 
         const encodedMsg = encodeURIComponent(mensajeWp);
         document.getElementById('whatsappBtn').href = `https://wa.me/524731639248?text=${encodedMsg}`;
     }
 
-    // Eventos en vivo
     document.getElementById('vehiculoInfo').addEventListener('input', calcularTotal);
     document.getElementById('tipoVehiculo').addEventListener('change', calcularTotal);
 </script>
